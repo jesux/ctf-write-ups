@@ -68,11 +68,11 @@ La diferencia mas evidente entre las versiones 2.6.4-pl1 y 2.6.4-pl2 es la elimi
 
 Una vez sabemos la version exacta, *2.6.4-pl1*, solo nos queda encontrar una vulnerabilidad con exploit.
 
-Aunque en CVEdetails aparece la vulnerabilidad no aparece ningún exploit, se puede encontrar en exploitdb un [exploit para la vulnerabilidad CVE-2005-3299](https://www.exploit-db.com/exploits/1244/).
+Aunque en CVEdetails aparece la vulnerabilidad, no se incluye ningún exploit. En cambio, en exploitdb se puede encontrar [exploit para la vulnerabilidad CVE-2005-3299](https://www.exploit-db.com/exploits/1244/).
 
-Lanzamos el exploit….. y no funciona. Vemos que el exploit solo funciona por HTTP y puerto 80, nosotros necesitamos lanzarlo a una web HTTPS en el puerto 8504.
+Una vez lanzado vemos que no funciona. Esto ocurre porque el exploit solo funciona por HTTP y puerto 80, nosotros necesitamos lanzarlo a una web HTTPS en el puerto 8504.
 
-Mi solución rápida fue utilizar netcat `nc -nlvp 80` y lanzarme el exploit a mi mismo, de esta forma ver la petición HTTP que realiza el exploit y replicarla con la función Repeater de Burp, una vez lanzado se obtiene el archivo con el token localizado en *../../token.secret*
+La solución rápida fue utilizar netcat `nc -nlvp 80` y lanzarme el exploit a mi mismo, de esta forma ver la petición HTTP que realiza el exploit y replicarla con la función Repeater de Burp, una vez lanzado se obtiene el archivo con el token localizado en *../../token.secret*
 
 ![](img/10-solucion.png)
 
