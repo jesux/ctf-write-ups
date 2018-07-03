@@ -4,11 +4,11 @@ Una vez superada la primera prueba, deberíamos haber obtenido las credenciales 
 
 Así que el primer paso es ‘encontrar’ el panel de login y acceder: http://challenges.ka0labs.org:31337/login
 
-![](img/mojojojo-login)
+![](img/mojojojo-login.png)
 
 Una vez dentro nos encontramos con un terminal llamado MoJS en el que podemos escribir instrucciones, al parecer en lenguaje JavaScript.
 
-![](img/mojojojo-terminal)
+![](img/mojojojo-terminal.png)
 
 Si revisamos el código fuente de la página, podemos encontrar un comentario con información de como utilizar el terminal.
 
@@ -31,7 +31,7 @@ Probamos con `result=help;` y obtenemos en pantalla la función help
 
 Si la ejecutamos con result=help(0); obtenemos el código de la función execute, que es la parte servidor, encargada de recibir las instrucciones que escribimos en el terminal.
 
-![](img/mojojojo-execute)
+![](img/mojojojo-execute.png)
 
 Una vez asimilado el código, vemos como las variables que escribimos en el terminal se guardan en el Objeto scope[sessId], también tenemos la restricción de no poder utilizar comillas y generar una cadena de texto o utilizar el carácter punto para lanzar un método.
 Una de las pistas nos recomienda utilizar prototypes y mutar el objeto,
@@ -94,7 +94,7 @@ return fl4g;
 
 Aquí vemos la tres instrucciones necesarias para resolver la prueba
 
-![](img/mojojojo-solucion)
+![](img/mojojojo-solucion.png)
 
 Posted on October 7, 2016February 25, 2017Author JesúsTags CTF, Javascript, ka0labs, NavajaNegra2016
 Post navigation
