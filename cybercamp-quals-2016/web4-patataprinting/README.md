@@ -60,19 +60,19 @@ Aunque en este momento podríamos probar exploits para estas versiones, no iba a
 
 La versión exacta la encontraremos analizando el archivo translators.html
 
-Este archivo ha sido modificado cambiando el número de versión, así que su firma no nos sirve para identificarlo.
+Este archivo ha sido modificado cambiando el número de versión, así que su hash MD5 no nos sirve para identificarlo.
 
-La diferencia mas evidente entre las versiones 2.6.4-pl1 y 2.6.4-pl2 es la eliminacion de las palabras so called. También hay otro detalle que nos hubiera ayudado a identificar la versión, la errata en la palabra developement
+La diferencia mas evidente entre las versiones 2.6.4-pl1 y 2.6.4-pl2 es la eliminacion de las palabras *'so called'*. También hay otro detalle que nos hubiera ayudado a identificar la versión, la errata en la palabra *developement*.
 
 ![](img/09-translators.png)
 
-Una vez sabemos la version exacta, *2.6.4-pl1*, solo nos queda encontrar un exploit que lanzarle.
+Una vez sabemos la version exacta, *2.6.4-pl1*, solo nos queda encontrar una vulnerabilidad con exploit.
 
-Aunque en CVEdetails no aparece ningún exploit, se puede encontrar en exploitdb un [exploit para la vulnerabilidad CVE-2005-3299](https://www.exploit-db.com/exploits/1244/).
+Aunque en CVEdetails aparece la vulnerabilidad no aparece ningún exploit, se puede encontrar en exploitdb un [exploit para la vulnerabilidad CVE-2005-3299](https://www.exploit-db.com/exploits/1244/).
 
-Lanzamos el exploit….. y no funciona. Vemos que el exploit solo funciona por HTTP y puerto 80, nosotros necesitamos lanzarlo a una web HTTPS en un puerto poco común.
+Lanzamos el exploit….. y no funciona. Vemos que el exploit solo funciona por HTTP y puerto 80, nosotros necesitamos lanzarlo a una web HTTPS en el puerto 8504.
 
-Mi solución rápida fue utilizar netcat `nc -l 80` y lanzarme el exploit a mi mismo, de esta forma puedo ver la petición HTTP que realiza el exploit y replicarla con la función Repeater de Burp, una vez lanzado se obteniene el archivo con el token localizado en *../../token.secret*
+Mi solución rápida fue utilizar netcat `nc -nlvp 80` y lanzarme el exploit a mi mismo, de esta forma ver la petición HTTP que realiza el exploit y replicarla con la función Repeater de Burp, una vez lanzado se obtiene el archivo con el token localizado en *../../token.secret*
 
 ![](img/10-solucion.png)
 
