@@ -8,30 +8,29 @@ Para esta prueba tenemos 54 archivos de cartas con los siguientes números orden
 
 La clave a descifrar es `HBCNC DKARI OFVIC DISQ`
 
-Después de investigar llegamos a la conclusión de que nos encontramos ante el cifrado Solitario de la novela Cryptonomicon.
+Después de investigar llegamos a la conclusión de que nos encontramos ante el [cifrado Solitario](https://en.wikipedia.org/wiki/Solitaire_(cipher)) de la novela [Cryptonomicon](https://en.wikipedia.org/wiki/Cryptonomicon)
 
-<https://www.schneier.com/code/sol.py>
+Utilizamos este script de *Python* [https://www.schneier.com/code/sol.py] y lo modificamos para introducir el orden de nuestra baraja. Los comodines A y B los sustituimos por ’53’ y ’54’
 
-Utilizamos este script de Python y lo modificamos para introducir el orden de nuestra baraja. Los comodines A y B los sustituimos por ’53’ y ’54’
-
-```
+```python
 deck = [48, 52, 54, 9, 10, .... 18, 19, 2]
 ```
 
 El resultado obtenido es `XBDQDVHLVQCJDNWQJLV`
+
 En este caso no hemos obtenido el mensaje correcto.
 
 Después de probar distintas combinaciones y verificar que el algoritmo fuera correcto se encontró la solución utilizando el script con la baraja inicial ordenada
 
-```
+```python
 deck = [1, 2, 3,  .... 52, 53, 54]
 ```
 
-El mensaje es `DESPUESUNBUSCAMINAS`
+El mensaje es **DESPUESUNBUSCAMINAS**
 
 Una vez encontrada la solución, podemos observar como lo que nos ofrecía la prueba es el orden de la baraja después de cifrar el texto y simplemente hemos tenido suerte al encontrar la solucion con una baraja ordenada.
 
 Para resolver correctamente la prueba, necesitamos invertir el proceso de cifrado y reordenado de la baraja.
 Para ello he modificado el script inicial con esta nueva opción.
 
-<https://gist.github.com/jesux/0a2d243b3fdcc8827adf>
+[solitaire-inverse.py](https://gist.github.com/jesux/0a2d243b3fdcc8827adf)
