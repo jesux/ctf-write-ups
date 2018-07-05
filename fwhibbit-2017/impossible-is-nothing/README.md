@@ -54,7 +54,7 @@ En el ultimo paso de la solución a la prueba se consiguió ejecutar el archivo 
 
 Por tanto, nuestro primer objetivo será ejecutar nuestro propio código, pero a través del CGI.
 
-Para ello voy a simplificar el proceso utilizando directamente la librería/clase *PHP-FastCGI-Client* para comunicarme con el socket de PHP/CGI.
+Para ello voy a simplificar el proceso utilizando directamente la librería/clase [PHP-FastCGI-Client](https://github.com/adoy/PHP-FastCGI-Client) para comunicarme con el socket de PHP/CGI.
 
 ![](img/10-class.png)
 
@@ -66,7 +66,7 @@ De esta forma tampoco es posible evadir las protecciones para ejecutar funciones
 
 ![](img/12-wrappers-fail.png)
 
-Mi siguiente intento fue el de subir mi propio archivo PHP y ejecutarlo, para ello podia utilizar la función *tmpfile* para crear un fichero de nombre aleatorio en el directorio */tmp/* y *fwrite* para escribir en el. Al no tener la extension *.php*, por seguridad, no es posible ejecutar el archivo.
+Mi siguiente intento fue el de subir mi propio archivo PHP y ejecutarlo, para ello podia utilizar la función *tmpfile* para crear un fichero de nombre aleatorio en el directorio */tmp/* y *fwrite* para escribir en el. Al no tener este archivo la extension *.php*, por seguridad, no es posible ejecutar el archivo.
 
 ``php
 // Crear archivo temporal
@@ -109,19 +109,16 @@ $data = '
 
 ![](img/16-shell.png)
 
+A partir de aquí se puede seguir investigando cómodamente, tan solo cambiando el código a ejecutar en la variable *$code*.
 
-A partir de aquí se puede seguir investigando cómodamente, tan solo cambiando el código a ejecutar en la variable $code.
-
-Podemos usar scandir para listar los archivos de un directorio.
+Podemos usar *scandir* para listar los archivos de un directorio.
 
 ![](img/scandir.png)
 
 ![](img/scandir-html.png)
 
-También es posible usar readfile para leer archivos de configuración del sistema, o el mismo código fuente de la prueba.
+También es posible usar *readfile* para leer archivos de configuración del sistema, o el mismo código fuente de la prueba.
 
 ![](img/17-ajax-code.png)
 
-Finalmente no fue posible evadir la protección de funciones deshabilitadas, ni siquiera utilizando un hook con LD_PRELOAD como se explica en el blog de 0verl0ad al estar la función mail deshabilitada.
-
-![](img/15-wrappers-enabled.png)
+Finalmente no fue posible conseguir ejecución de comandos en la maquina evadiendo la protección de funciones deshabilitadas, ni siquiera utilizando un hook con *LD_PRELOAD* como se explica en el [blog de 0verl0ad](http://www.0verl0ad.net/2016/03/bypassing-disablefunctions-y.html) al estar la función *mail* deshabilitada.
