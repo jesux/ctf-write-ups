@@ -60,9 +60,9 @@ Una vez conocemos el hash, realizamos fuerza bruta con un script de python.
 
 Un detalle adicional que nos da la prueba, es la longitud del flag correcto, 9 caracteres.
 
-Realizar una fuerza bruta sobre 9 caracteres llevaría bastante tiempo, pero debido a que el hash se realiza con una operación matemática bastante simple, es posible reducir el problema, por ejemplo en una fuerza bruta de 6+3.
+Realizar una fuerza bruta sobre 9 caracteres llevaría bastante tiempo, pero debido a que el hash se realiza con una operación matemática bastante simple, es posible reducir el problema, por ejemplo en una fuerza bruta de 6+3 en la que solo se haría fuerza bruta de los ultimos 3 caracteres cuando en la primera fuerza bruta de 6 caracteres se obtuviera un candidato lo bastante cercano de la solución.
 
-Cuando digo bastante simple me refiero a la siguiente ecuación lineal. Esto en cualquier otro tipo de hash de los usados habitualmente no sería posible.
+Cuando digo que la operación matematica es bastante simple me refiero a que su forma es una ecuación lineal. Esto en cualquier otro tipo de hash de los usados habitualmente no sería posible.
 
 - Flag: ABCDEFGHJ
 - Un caracter en minusculas se encuentra entre 0x61 (97) y 0x7A (122)
@@ -77,7 +77,7 @@ Cuando digo bastante simple me refiero a la siguiente ecuación lineal. Esto en 
 9: (33^9)·1337 + (33^8)·A + (33^7)·B + (33^6)·C + (33^5)·D + (33^4)·E + (33^3)·F + (33^2)·G + (33)·H + J
 ```
 
-Tomando la parte de los 3 ultimos caracteres (33^2)·G + (33)·H + J calculamos la distancia entre el hash de XXXXXXaaa y XXXXXXzzz, que es de 28075.
+Tomando la parte de los 3 ultimos caracteres (33^2)·G + (33)·H + J calculamos la distancia entre el hash de *XXXXXXaaa* y *XXXXXXzzz*, que es de 28075.
 
 ```
 1123 *  97 = 108931
@@ -101,16 +101,16 @@ def hash(password):
 
 search = 0x45c84173
 
-for key in product(string.lowercase, repeat=6):
-  diff = search - hash(key + ('a','a','a'))
+for key6 in product(string.lowercase, repeat=6):
+  diff = search - hash(key6 + ('a','a','a'))
   if diff >= 0 and diff <= 28076:
     for key3 in product(string.lowercase, repeat=3):
-      if hash(key + key3) == search:
-        print("%s" % (''.join(key+key3)))
+      if hash(key6 + key3) == search:
+        print("%s" % (''.join(key6+key3)))
         break
 ```
 
-En aproximadamente 5 minutos, obtenemos 1290 posibles soluciones de 9 caracteres. De las que solo unas cuantas parecen ser palabras con sentido. Siendo la solución correcta `fuckvcpus`.
+En aproximadamente 5 minutos, obtenemos las 1290 posibles soluciones de 9 caracteres. De las que solo unas cuantas parecen ser palabras con sentido. Siendo la solución correcta `fuckvcpus`.
 
 Si optimizamos el script para que resuelva la ecuación carácter a carácter, se reduce el tiempo de ejecución a 1 segundo.
 
