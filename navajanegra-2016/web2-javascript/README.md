@@ -95,9 +95,3 @@ return fl4g;
 Aquí vemos la tres instrucciones necesarias para resolver la prueba
 
 ![](img/mojojojo-solucion.png)
-
-Posted on October 7, 2016February 25, 2017Author JesúsTags CTF, Javascript, ka0labs, NavajaNegra2016
-Post navigation
-Previous Previous post: NavajaNegra 2016 – Web 1 MongoDB Blind Injection
-Next Next post: CyberCamp Quals 2016 – Web 4 – Patataprinting like a b0ss
-Proudly powered by WordPress
