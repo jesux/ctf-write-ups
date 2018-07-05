@@ -68,7 +68,7 @@ De esta forma tampoco es posible evadir las protecciones para ejecutar funciones
 
 Mi siguiente intento fue el de subir mi propio archivo PHP y ejecutarlo, para ello podia utilizar la función *tmpfile* para crear un fichero de nombre aleatorio en el directorio */tmp/* y *fwrite* para escribir en el. Al no tener este archivo la extension *.php*, por seguridad, no es posible ejecutar el archivo.
 
-``php
+```php
 // Crear archivo temporal
 $data = '<?php phpinfo(); ?>';
 $tmpHandle = tmpfile();
