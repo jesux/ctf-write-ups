@@ -128,7 +128,7 @@ print(url2)
 
 ```
 
-El siguiente script automatiza todo el proceso de extracción del a cookie: [seccon-ghostkingdom.py](https://github.com/jesux/ctf-write-ups/blob/master/seccon-2018/GhostKingdom/seccon-ghostkingdom.py)
+El siguiente script automatiza todo el proceso de extracción de la cookie: [seccon-ghostkingdom.py](https://github.com/jesux/ctf-write-ups/blob/master/seccon-2018/GhostKingdom/seccon-ghostkingdom.py)
 
 Finalmente, la cookie obtenida es `b962fe196d05bbac14178a`.
 
