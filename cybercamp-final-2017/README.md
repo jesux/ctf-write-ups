@@ -5,7 +5,7 @@
 ![](img/retos3.png)
 
 # A01 - El Juego
-Categoría: Web
+### Categoría: Web
 
 La máquina A está alojando un servicio para una nueva red social: THE Login. Nos han informado que esta red social es solo una tapadera de su actividad real.
 
@@ -30,13 +30,13 @@ Flag: `I_Know_You_Cheated!`
 
 
 # A02 - ¿Me reconoces?
-Categoría: Reconocimiento
+### Categoría: Reconocimiento
 
 ¿Cuál es el nombre del servidor de correo?
 
 
 # A03 - ACCEDE a THE Login
-Categoría: Web
+### Categoría: Web
 
 ¡Necesitamos obtener más información! THE Login impide acceder a la web privada y a sus recursos.
 
@@ -51,7 +51,7 @@ Utilizando la herramienta `CeWL` generamos un diccionario con todas las palabras
 
 Realizamos una ataque de fuerza bruta con Hydra. (Lo que se supone que no esta permitido en un CTF y nunca se debe hacer)
 
-![](img/A01-hydra.png)
+![](img/A03-hydra.png)
 
 Una vez descubrimos las credenciales, accedemos y obtenemos la flag.
 
@@ -61,7 +61,7 @@ Flag: `ToInfiniteAndBeyond`
 
 
 # A04 - ¡Prueba Suerte!
-Categoría: Web
+### Categoría: Web
 
 Sabemos que una web dentro de THE Login te desafiará a probar suerte. La suerte es importante, pero debe haber una forma de entrar. No hemos tenido suerte hasta ahora. Por favor, obtén más información sobre su actividad.
 
@@ -77,7 +77,7 @@ Flag: `WhyIsJavascriptEvenAThing?!`
 
 
 # A05 - Información clave recopilada
-Categoría: Web
+### Categoría: Web
 
 Aunque no pudimos acceder a la web privada, hemos recopilado información clave a través de técnicas de ingeniería social. Si has tenido suerte, tendrás acceso a una red vulnerable. Están trabajando en ello para parchearlo. ¡Expóralo!
 
@@ -95,7 +95,7 @@ Flag: `WellDoneMyFriend`
 
 
 # B01 - Give me a glue
-Categoría: Web
+### Categoría: Web
 
 La máquina B está alojando un servicio sólo para fines de prueba. "Find the hidden value" es la única información que tenemos. Esperamos que tú puedes encontrar el valor oculto.
 
@@ -105,7 +105,7 @@ La máquina B está alojando un servicio sólo para fines de prueba. "Find the h
 
 ![](img/B01-source.png)
 
-Si analizamos el código Javascript de la aplicación y llamamaos a la función `abcd()` obtenemos el path en el que se encuentra la flag.
+Si analizamos el código Javascript de la aplicación y llamamos a la función `abcd()` obtenemos el path en el que se encuentra la flag.
 
 ![](img/B01-abcd.png)
 
@@ -115,7 +115,7 @@ Flag: `NANANANANANANA`
 
 
 # B05 - Recopilación de información
-Categoría: Reconocimiento
+### Categoría: Reconocimiento
 
 Encuentra la bandera oculta en la máquina B.
 
@@ -123,16 +123,17 @@ Encuentra la bandera oculta en la máquina B.
 
 Con un escaneo de todos los puertos utilizando `nmap` aparece un servicio en el puerto TCP 58000 con la flag en su banner.
 
-![](img/B05-flag.png)
-
-
 ```bash
 nmap -sV -p- 77.94.35.20
 ```
 
+![](img/B05-flag.png)
+
 Flag: `StrangerServices`
 
-# X01
+
+# X01 - The Core
+### Categoría: Aplicaciones
 
 El servidor X tiene un servidor FTP vulnerable. Aunque este reto es trivial utilizando un modulo de metasploit, debido a que en su momento no configuré correctamente la ruta del servidor web, tuve que explotarlo manualmente.
 
@@ -151,11 +152,12 @@ Ejecutamos una shell reversa y leemos el archivo con la flag.
 ![](img/X01-flag.png)
 
 
-# X02
+# X02 - Escalada de privilegios
+### Categoría: Sistemas Operativos
 
 El segundo reto consiste en escalar privilegios y obtener la flag que se encuentra en `/root/flag.txt`.
 
-Para ello subimos un archivo shadow con el password de root modificado y lo reemplazamos por el original utilizando la vulnerabilidad del servidor FTP.
+Para ello subimos un archivo `shadow` con el password de root modificado y lo reemplazamos por el original utilizando la vulnerabilidad del servidor FTP.
 
 ![](img/X01-shadow.png)
 
@@ -164,7 +166,8 @@ Elevamos privilegios con `su` y leemos el archivo con la flag.
 ![](img/X02-flag.png)
 
 
-# X03
+# X03 - Una pequeña imagen
+### Categoría: Criptografía
 
 El tercer reto consiste en decodificar una imagen de 8x31 pixeles en blanco y negro.
 
@@ -174,7 +177,7 @@ El tercer reto consiste en decodificar una imagen de 8x31 pixeles en blanco y ne
 
 
 # Z01 - Mr. Potato
-Categoría: Reconocimiento
+### Categoría: Reconocimiento
 
 ¿Eres Mr Potato? Si eres Potato tendrás permiso. Solo Mr Potato tiene permiso. ¿Eres Mr potato? ¿Eres Potato? Potato permitido. Pero solo Mr Potato. Potato?
 
