@@ -21,7 +21,7 @@ Cryptsetup puede ayudarte a regenerar las cabeceras, para luego recuperar el fic
 Buscamos la clave AES con la herramienta `findaes`
 
 ```bash
-# findaes dump.elf
+findaes dump.elf
 Searching dump.elf
 Found AES-256 key schedule at offset 0xe414ce8:
 0a b4 d6 ef 72 82 6b c6 03 a8 89 9f 32 5b b6 7e 9b 32 41 77 1c fd 03 30 56 9a ce ab 16 f2 51 bd
@@ -34,7 +34,7 @@ Guardamos la clave en formato binario en el archivo `aeskey`.
 ```bash
 echo 84bcd98cfcf2dedb260635bfcaa9a47d | xxd -r -p > aeskey
 ```
-El archivo `volume.bin` contiene una partición entre los sectores 63 y 16002.
+El archivo `volume.bin` contiene una partición entre los sectores 63 y 16064.
 
 ```bash
 fdisk -l volume.bin
