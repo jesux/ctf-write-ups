@@ -131,9 +131,9 @@ Compilamos con *Visual Studio* una aplicación que nos ayude a desofuscar los te
 
 ![](img/BackupProtector.png)
 
-Si ejecutamos la aplicación vemos un boton llamado *Compress* que ejecuta la acción. Mientras desofuscamos unos de los objetivos sera encontrar este boton y que función llama al ser pulsado.
+Si ejecutamos la aplicación vemos un boton llamado *Compress*. Mientras desofuscamos uno de los objetivos será encontrar este boton y que función llama al ser pulsado.
 
-El objeto `eval_d` que se observa en la captura de pantala anterior corresponde a este botón, el string la linea 67 es 'Compress'.
+El string de la linea 67 es 'Compress', así que el objeto `eval_d`corresponde a este botón,
 
 Este botón llama a la función `eval_e` cuando se hace click en el.
 Analizandola vemos como llama a la función *CompressFilesEncrypted*.
@@ -150,7 +150,7 @@ Por tanto el string *text2* contiene la contraseña utilizada para cifrar los ar
 sevenZipCompressor.CompressFilesEncrypted(text, text2, new string[])
 ```
 
-En la linea 80 vemos como el string text2 se le asigna el valor devuelto por la funcion `eval_b()`
+En la linea 80 vemos como el string *text2* se le asigna el valor devuelto por la funcion `eval_b()`
 
 ```c#
 string text2 = this.eval_b();
@@ -160,7 +160,7 @@ string text2 = this.eval_b();
 
 Replicamos esta función en *Visual Studio* para obtener la contraseña utilizada.
 
-Esta función hace el hash sha512 del texto 'iz)85TG$$weT' y devuelve los 10 primeros caracteres.
+Esta función hace el hash sha512 del texto 'iz)85TG$$weT' y devuelve los 10 primeros caracteres del hash.
 
 Por tanto, la contraseña maestra de todos los archivos generados con este software es `1f4dd2261a`.
 
