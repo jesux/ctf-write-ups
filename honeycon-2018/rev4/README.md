@@ -2,9 +2,9 @@
 
 Este reto de reversing consiste en encontrar un código válido que cumpla determinadas condiciones.
 
-Abrimos el binario con radare.
-
 [rev4](rev4)
+
+Abrimos el binario con radare.
 
 ```bash
 r2 -AA rev4
