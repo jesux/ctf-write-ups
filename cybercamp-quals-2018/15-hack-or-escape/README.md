@@ -47,17 +47,11 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
 
 Usaremos el perfil `Win7SP1x86`.
 
-```bash
-volatility  -f memdump --profile=Win7SP1x86 hashdump
-Volatility Foundation Volatility Framework 2.6
-Invitado:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0::: -> [empty]
-teletran1:1000:aad3b435b51404eeaad3b435b51404ee:8846f7eaee8fb117ad06bdd830b7586c::: -> password
-```
-
-0x000000001e1f5ea0      5      0 R--r-d \Device\HarddiskVolume1\Users\teletran1\Desktop\BackupProtect.exeexe
+con `psscan` miramos la lista de procesos en ejecución.
 
 ```bash
 volatility -f memdump --profile=Win7SP1x86 psscan
+
 Volatility Foundation Volatility Framework 2.6
 Offset(P)          Name                PID   PPID PDB        Time created                   Time exited
 ------------------ ---------------- ------ ------ ---------- ------------------------------ ------------------------------
@@ -108,6 +102,7 @@ Extraemos el proceso *BackupProtect*
 
 ```bash
 volatility -f memdump --profile=Win7SP1x86 procdump --offset=0x000000001df771b0 -D dump
+
 Volatility Foundation Volatility Framework 2.6
 Process(V) ImageBase  Name                 Result
 ---------- ---------- -------------------- ------
