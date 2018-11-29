@@ -35,7 +35,7 @@ Este reto se puede resolver rápidamente con la herramienta *angr*, o de forma m
 
 Generamos un script de *angr* indicando la direcciones a encontrar y direcciones a evitar.
 
-Como solo es necesario encontrar una solución que cumpla la 20 primeras ecuaciones, diseñamos el script con este proposito. Otra solución sería eliminar algunos bucles del binario original, reduciendo las ecuaciones que se comprueban.
+Como solo es necesario encontrar una solución que cumpla las 20 primeras ecuaciones, diseñamos el script con este proposito. Otra solución sería eliminar algunos bucles del binario original, reduciendo el número total de ecuaciones que se comprueban.
 
 Otra parte importante del script es *hookear* las funciones *printf* y *scanf* para que no realicen nada.
 
