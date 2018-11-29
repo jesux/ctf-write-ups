@@ -16,7 +16,7 @@ Usando la herramienta *Responder* podemos intentar envenenar peticiones LLMNR y 
 
 ![](img/jax-responder1.png)
 
-Intentamos montar un servicio DHCPv6 utilizando dnsmasq y habilitar el reenvío de IP en nuestra máquina.
+Intentamos montar un servicio DHCPv6 utilizando *dnsmasq* y habilitamos `IP forwarding` en nuestra máquina.
 
 ```
 $ ifconfig tap0 inet6 add 1234::1/64
