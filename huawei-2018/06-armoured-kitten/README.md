@@ -31,9 +31,22 @@ Vemos una serie de bucles en los que se comprueba que los caracteres que hemos i
 
 Este reto se puede resolver rápidamente con la herramienta *angr*, o de forma mas laboriosa extrayendo las ecuaciones y resolviéndolas con software matemático.
 
+### Angr
+
+Generamos un script de *angr* indicando la direcciones a encontrar y direcciones a evitar.
+
+Como solo es necesario encontrar una solución que cumpla la 20 primeras ecuaciones, diseñamos el script con este proposito. Otra solución sería eliminar algunos bucles del binario original, reduciendo las ecuaciones que se comprueban.
+
+Otra parte importante del script es *hookear* las funciones *printf* y *scanf* para que no realicen nada.
+
+Por ultimo, una vez encontramos la solución, tenemos que mostrar el estado de la memoria en `SP + 30288`.
+
 [solve.py](solve.py)
 
 ![](img/angr-solve.png)
+
+
+### Debugging y extracción de ecuaciones
 
 Para debuggear el programa utilizamos:
 
@@ -127,7 +140,7 @@ R = 103, S = 122, T = 63]
 
 ![](img/flag.png)
 
-Obtenemos la flag en formato decimal, lo convertimos a ascii para obtener el texto de la flag.
+Obtenemos la flag en formato decimal, lo convertimos a ascii.
 
 ![](img/flag2.png)
 
