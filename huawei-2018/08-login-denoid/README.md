@@ -40,6 +40,24 @@ Con una inyección comilla simple descubrimos que se devuelve el error `Database
 
 El primer paso es formar una inyección booleana, tras probar algunos caracteres o palabras de SQL nos damos cuenta de que esta aplicación tiene reglas para bloquear ataques, devolviendo el error `Blacklisted`.
 
+
+
+#### Caracteres bloqueados
+```
+[Espacio] > ` * # = --  || &&
+```
+
+#### Palabras bloqueadas
+```
+LIKE BETWEEN CONCAT LENGTH LOWER SUBSTR SUBSTRING COUNT ASC ABS TRIM VERSION UNION ALL
+NULL ISNULL LEFT CHAR GETDATE ROUND UNION COALESCE REGEXP PRINTF UPPER LOWER
+```
+
+### Caracteres y palabras permitidas
+```
+' ( ) < - + (%2b) AND OR SELECT FROM WHERE SIGN MID GLOB
+```
+
 Uno de estos caracteres bloqueados es el espacio, por lo que deberemos construir las consultas SQL sin hacer uso de ellos y en su lugar utilizando paréntesis donde sea posible.
 
 ```
