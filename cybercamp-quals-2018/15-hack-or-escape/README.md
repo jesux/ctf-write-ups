@@ -47,12 +47,11 @@ INFO    : volatility.debug    : Determining profile based on KDBG search...
 
 Usaremos el perfil `Win7SP1x86`.
 
-con `psscan` miramos la lista de procesos en ejecución.
+Con `psscan` miramos la lista de procesos en ejecución.
 
 ```bash
 volatility -f memdump --profile=Win7SP1x86 psscan
 
-Volatility Foundation Volatility Framework 2.6
 Offset(P)          Name                PID   PPID PDB        Time created                   Time exited
 ------------------ ---------------- ------ ------ ---------- ------------------------------ ------------------------------
 0x000000001dc09d40 dllhost.exe        1816    508 0x1ee072e0 2018-07-06 11:06:53 UTC+0000
@@ -103,7 +102,6 @@ Extraemos el proceso *BackupProtect*
 ```bash
 volatility -f memdump --profile=Win7SP1x86 procdump --offset=0x000000001df771b0 -D dump
 
-Volatility Foundation Volatility Framework 2.6
 Process(V) ImageBase  Name                 Result
 ---------- ---------- -------------------- ------
 0x85d771b0 0x00230000 BackupProtect.       OK: executable.436.exe
@@ -131,7 +129,7 @@ Si ejecutamos la aplicación vemos un boton llamado *Compress*. Mientras desofus
 El string de la linea 67 es 'Compress', así que el objeto `eval_d`corresponde a este botón,
 
 Este botón llama a la función `eval_e` cuando se hace click en el.
-Analizandola vemos como llama a la función *CompressFilesEncrypted*.
+Analizandola vemos como utiliza la función *CompressFilesEncrypted*.
 
 Si buscamos documentación de esta función, vemos como el segundo parametro es la contraseña de cifrado.
 
