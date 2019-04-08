@@ -1,6 +1,8 @@
 # Swamp CTF 2019 - Cartographer's Capture - Forensics
 
 Cartographer's Capture (498 pts)
+
+Forensics
 ```
 We've gotten a hold of a file that contains a whole bunch of weird-looking IP addresses by having one of our robo-hounds sniff out some leaking data from a EvilCorp warehouse. We're not sure how to decipher this but we know that this particular warehouse is one of the main sources for location information.
 
@@ -8,7 +10,7 @@ We've gotten a hold of a file that contains a whole bunch of weird-looking IP ad
 ```
 
 [ip_addresses.txt](ip_addresses.txt)
-First 10 lines
+
 ```
 65.236.181.168
 194.164.163.71
@@ -27,7 +29,7 @@ In this challenge we get a lot of IP addresses, it is obvious that the addresses
 
 The title of the challenge suggests that these addresses correspond to coordinates on a map.
 
-Our goal will be to transform the IP addresses into coordinates that represent us in some way the flag
+Our goal will be to transform the IP addresses into coordinates that represent us in some way the flag.
 
 [@danitorwS](https://twitter.com/danitorwS) realized that there are only 8 different IP addresses that start with *65*, and in the same way 32 that start with *194*.
 
@@ -37,7 +39,7 @@ We return to the initial idea of drawing the coordinates, so we write a script i
 
 ![](img/fuk.jpg)
 
-The flag is obtained by representing the IP addresses directly in a matrix of 32x8 pixels
+The flag is obtained by representing the IP addresses directly in a matrix of 32x8 pixels.
 
 [paint-ip.py](paint-ip.py)
 
