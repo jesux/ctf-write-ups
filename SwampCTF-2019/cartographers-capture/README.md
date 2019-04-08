@@ -4,7 +4,11 @@ Cartographer's Capture (498 pts)
 
 Forensics
 ```
-We've gotten a hold of a file that contains a whole bunch of weird-looking IP addresses by having one of our robo-hounds sniff out some leaking data from a EvilCorp warehouse. We're not sure how to decipher this but we know that this particular warehouse is one of the main sources for location information.
+We've gotten a hold of a file that contains a whole bunch of
+weird-looking IP addresses by having one of our robo-hounds
+sniff out some leaking data from a EvilCorp warehouse. We're
+ot sure how to decipher this but we know that this particular
+warehouse is one of the main sources for location information.
 
 -= Challenge by P4PA_0V3RL0RD =-
 ```
