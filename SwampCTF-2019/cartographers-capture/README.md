@@ -37,8 +37,6 @@ Our goal will be to transform the IP addresses into coordinates that represent u
 
 [@danitorwS](https://twitter.com/danitorwS) realized that there are only 8 different IP addresses that start with *65*, and in the same way 32 that start with *194*.
 
-Volvemos a la idea inicial de dibujar las coordenadas, por lo que escribimos un script en python. Aunque en un primer momento, al no convertir el valor de la dirección IP a decimal, no se aprecian las palabras en la imagen resultante
-
 We return to the initial idea of drawing the coordinates, so we write a script in python. Although at first, by not converting the value of the IP address to decimal, the words in the resulting image are not appreciated.
 
 ![](img/fuk.jpg)
