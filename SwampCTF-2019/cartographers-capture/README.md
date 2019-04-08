@@ -89,9 +89,9 @@ with open('ip_addresses.txt') as f:
         else:
             ipx = ip - 3265569056
 
-            a = SIZE_X - ipx
-            b = SIZE_Y - ipy
-            draw.rectangle((a, b, round(a-squaresize), round(b-squaresize)), fill=0)
+            x = SIZE_X - ipx
+            y = SIZE_Y - ipy
+            draw.rectangle((x, y, x-squaresize, y-squaresize), fill=0)
 
         i += 1
 

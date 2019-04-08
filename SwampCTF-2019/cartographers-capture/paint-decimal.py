@@ -3,9 +3,9 @@ from socket import inet_aton
 import struct
 
 def ip2long(ip):
-    packed = inet_aton(ip)
-    lng = struct.unpack("!L", packed)[0]
-    return lng
+	packed = inet_aton(ip)
+	lng = struct.unpack("!L", packed)[0]
+	return lng
 
 squaresize = 18
 
@@ -27,9 +27,9 @@ with open('ip_addresses.txt') as f:
 		else:
 			ipx = ip - 3265569056
 
-			a = SIZE_X - ipx
-			b = SIZE_Y - ipy
-			draw.rectangle((a, b, round(a-squaresize), round(b-squaresize)), fill=0)
+			x = SIZE_X - ipx
+			y = SIZE_Y - ipy
+			draw.rectangle((x, y, x-squaresize, y-squaresize), fill=0)
 
 		i += 1
 
