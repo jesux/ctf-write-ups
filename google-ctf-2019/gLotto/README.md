@@ -1,4 +1,4 @@
-# GOOGLE CTF 2019 - gLotto
+# Google CTF 2019 - gLotto
 
 ![](img/gLotto-001.png)
 
@@ -38,8 +38,7 @@ for ($i = 0; $i < count($tables); $i++)
 Esta vulnerabilidad nos permite inyectar código SQL después de la instrucción *ORDER BY*, lo que nos limita en el uso de subconsultas con *UNION SELECT*.
 Además, tenemos la limitación de que cada vez que visitamos la web se genera un código nuevo, lo que implica que deberemos exfiltrar este código en una única petición.
 
-Por otro lado, existen 4 parámetros de orden distintos, uno para cada tabla, (ordero0, order1, order2 y order3).
-
+Por otro lado, existen 4 parámetros de orden distintos, uno para cada tabla, (order0, order1, order2 y order3).
 
 ## Analizando el código
 
@@ -60,10 +59,7 @@ La cantidad de datos exfiltrados en el mejor de los casos no es suficiente para 
 
 Para simplificar la extracción, se divide el código en 4 trozos de la siguiente forma, *4-4-3-1*, 4 caracteres en la primera y segunda tabla, 3 en la tercera, y 1 en la última.
 
-Como no , esto genera colisiones, es decir, existen varios códigos que forman la misma ordenación de la tabla.
-
-Para conocer el funcionamiento de la funcion *RAND* he recreado la base de datos en un entorno local y he realizado las cálculos necesarios de la función RAND, además de poder probar localmente todo el proceso de inyección. [Archivo SQL](gLotto.sql)
-
+Para conocer el funcionamiento de la funcion *RAND* he recreado la base de datos en un entorno local y he realizado las cálculos necesarios, además de poder probar localmente todo el proceso de inyección. [Archivo SQL](gLotto.sql)
 
 ## Generar tablas
 
@@ -99,7 +95,9 @@ echo "$word - $num\n";
 
 ## Let's SQLI!
 
-El primer obstaculo es evitar que ordene por la columna `winner`, para ello lo anulamos utilizando `*0`. El siguiente problema es convertir los caracteres a un valor numérico en la semilla de la función *RAND*, de forma simple, cada caracter se convierte en un valor numérico y se multiplica por una potencia de 44, se escoje este valor por ser la distancia entre el caracter `0` y `Z` en la tabla ascii, aunque es posible utilizar cualquier otro.
+El primer obstaculo es evitar que ordene por la columna `winner`, para ello lo anulamos utilizando `*0`.
+
+El siguiente problema es que el parametro de la función RAND(i) debe ser númerico, y por tanto debemos convertir los caracteres a un valor numérico, de forma simple, cada caracter se convierte en un valor numérico y se multiplica por una potencia de 44, se escoje este valor por ser la distancia entre el caracter `0` y `Z` en la tabla ascii, aunque es posible utilizar cualquier otro.
 
 ```
 ?order0=winner`*0,rand((ord(MID(@lotto,1,1))-47)*85184 + (ord(MID(@lotto,2,1))-47)*1936 + (ord(MID(@lotto,3,1))-47)*44 + (ord(MID(@lotto,4,1))-47))#
