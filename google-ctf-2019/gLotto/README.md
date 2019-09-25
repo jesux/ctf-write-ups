@@ -4,7 +4,7 @@
 
 ## Introducción
 
-El reto consiste en acertar un código y ganar la loteria. Ademas se nos muestran los resultados de los sorteos de los últimos 4 meses.
+El reto consiste en acertar un código y ganar la lotería. Ademas se nos muestran los resultados de los sorteos de los últimos 4 meses.
 
 El funcionamiento de la aplicación es el siguiente:
 - Se genera un código aleatorio de 12 caracteres en la primera visita.
@@ -95,9 +95,9 @@ echo "$word - $num\n";
 
 ## Let's SQLI!
 
-El primer obstaculo es evitar que ordene por la columna `winner`, para ello lo anulamos utilizando `*0`.
+El primer obstáculo es evitar que ordene por la columna `winner`, para ello lo anulamos utilizando `*0`.
 
-El siguiente problema es que el parametro de la función RAND(i) debe ser númerico, y por tanto debemos convertir los caracteres a un valor numérico, de forma simple, cada caracter se convierte en un valor numérico y se multiplica por una potencia de 44, se escoje este valor por ser la distancia entre el caracter `0` y `Z` en la tabla ascii, aunque es posible utilizar cualquier otro.
+El siguiente problema es que el parametro de la función RAND(i) debe ser númerico, y por tanto debemos convertir los caracteres a un valor numérico, de forma simple, cada carácter se convierte en un valor numérico y se multiplica por una potencia de 44, se escoje este valor por ser la distancia entre el caracter `0` y `Z` en la tabla ascii, aunque es posible utilizar cualquier otro.
 
 ```
 ?order0=winner`*0,rand((ord(MID(@lotto,1,1))-47)*85184 + (ord(MID(@lotto,2,1))-47)*1936 + (ord(MID(@lotto,3,1))-47)*44 + (ord(MID(@lotto,4,1))-47))#
