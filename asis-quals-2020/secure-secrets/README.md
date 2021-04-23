@@ -5,7 +5,7 @@
 
 # ASIS CTF 2020 - Less secure secrets
 
-[](img/less-secure-secrets.png)
+![](img/less-secure-secrets.png)
 
 The challenge is built with 3 dockers containers:
 
