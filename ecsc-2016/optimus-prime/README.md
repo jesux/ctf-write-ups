@@ -1,4 +1,4 @@
-# CTF ECSC 2016
+# CTF ECSC 2016 - Optimus Prime
 
 ![](img/logo.png)
 
