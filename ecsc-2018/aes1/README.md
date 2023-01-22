@@ -9,18 +9,23 @@ crypto enc <key> - encrypt stdin with hexstring key
 crypto dec <key> - decrypt stdin with hexstring key
 ```
 
+## Solution
+
+- Keygen only reads 3 bytes from /dev/urandom :256^3 = 16777216
+- We modificate original crypto.c code to decode using seeds from 0 to 16777216.
+- For each possible solution we save the output to file.
+- With unix `strings -n 20 *` and `grep` tools we search for ascii test into all of decoded files.
+- The file with seed 4577551 is the correct. The key for this seed is d366288d4490e99553a909c98f7c2947 and the md5 of file is f7d2df2442904fa01a8c3e3de3216729
+
+
 ```bash
 gcc -Wall crypto-bruteforce.c -o crypto-bruteforce -lssl -lcrypto
 cat cipher | ./crypto-bruteforce
-...
+
 strings out/* -n 20
-
 Swordfish is a 2001 American action crime ...
-```
 
-```bash
 grep Swordfish out/*
-
 out/4577551_d366288d4490e99553a909c98f7c2947:Swordfish is a 2001 American action crime thriller film directed by Dominic Sena and starring John Travolta, Hugh Jackman, Halle Berry, Don Cheadle, Vinnie Jones and Sam Shepard. The film centers on Stanley Jobson, an ex-con and computer hacker who is targeted for recruitment into a bank robbery conspiracy because of his formidable hacking skills. The film was a slight box office success but was negatively received by critics upon release.
 ```
 

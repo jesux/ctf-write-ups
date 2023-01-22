@@ -6,6 +6,15 @@ The *keygen* function is different.
 
 ![](img/keygen.jpg)
 
+## Solution
+
+- Keygen uses seed from microtime part of `gettimeofday` function.
+- We modificate original crypto.c code to decode using seeds from 0 to 999999.
+- For each possible solution we save the output to file.
+- With unix `strings -n 20 *` and `grep` tools we search for ascii test into all of decoded files.
+- The file with seed 543953 is the correct. The key for this seed is 1d06dd496c93a4063d5a6ff7d602b1ed and the md5 of file is 81a067f04ac30b3eea90d2cba6d1c06f
+
+
 ```bash
 gcc -Wall crypto-bruteforce.c -o crypto-bruteforce -lssl -lcrypto
 cat cipher | ./crypto-bruteforce
