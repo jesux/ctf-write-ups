@@ -58,7 +58,7 @@ common.py
 
 Adaptamos el script de este writeup <https://github.com/p4-team/ctf/tree/master/2016-09-16-csaw/neo> y realizamos el ataque de padding oracle para descifrar el texto anterior. También es posible utilizar el código original <https://github.com/mpgn/Padding-oracle-attack/blob/master/exploit.py>.
 
-[padding-oracle.py](scripts/level04-encrypted-pastebin/padding-oracle.py)
+[padding_oracle.py](scripts/level04-encrypted-pastebin/padding_oracle.py)
 
 ![](img/level03-paddingoracle.png)
 
